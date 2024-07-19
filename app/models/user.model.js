@@ -1,0 +1,87 @@
+const mongoose = require("mongoose");
+
+const userSchema = new mongoose.Schema({
+  _id: mongoose.Types.ObjectId,
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+   // match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,  // Updated regex
+  },
+
+  password: { 
+    type: String, 
+    required: true,
+  },
+
+  code: { type: String,
+    required: true 
+
+   },
+
+  number: { type: Number,
+     required: true,
+     unique: true 
+    },
+
+ isVerified: {
+    type: Boolean,
+    default: false
+  },
+
+  verificationToken: String,
+  verificationTokenExpires: Date,
+
+ 
+  resetOTP: {
+    type: String
+},
+ 
+resetOTPExpires: {
+    type: Date
+},
+
+
+
+googleId: {
+    type: String,
+    required: false
+  },
+  displayName: {
+    type: String,
+    required: false
+  },
+  firstName: {
+    type: String,
+    required: false
+  },
+  lastName: {
+    type: String,
+    required: false
+  },
+  image: {
+    type: String,
+    required: false
+  },
+
+
+
+
+
+},
+
+
+
+{
+  timestamps: true  // Correctly place timestamps option here
+
+
+
+
+
+}
+
+
+);
+
+module.exports = mongoose.model('User', userSchema);
