@@ -16,6 +16,7 @@ const session = require('express-session');
 
 
 
+
  require('./app/database/Mongo.database')
  require('dotenv').config();
 
@@ -63,6 +64,7 @@ app.use(express.static(path.join(__dirname, "public")));
  //Routes which should handle request
 app.use('/user', userRoutes)
 app.use('/user', verifyRoutes)
+//app.use('/auth', googleRoutes)
 
 
 

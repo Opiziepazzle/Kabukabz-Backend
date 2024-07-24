@@ -14,27 +14,27 @@ router.get('/google/callback',
 );
 
 // Route for logging out
-router.get('/logout', (req, res) => {
-  req.logout();
-  res.redirect('/');
-});
+// router.get('/logout', (req, res) => {
+//   req.logout();
+//   res.redirect('/');
+// });
 
 // Home route
-router.get('/', (req, res) => {
-  res.render('index', { user: req.user });
-});
+// router.get('/', (req, res) => {
+//   res.render('index', { user: req.user });
+// });
 
 // My Account route
-router.get('/my-account', (req, res) => {
-  if (!req.isAuthenticated()) {
-    return res.redirect('/login');
-  }
-  res.render('my-account', { user: req.user });
-});
+// router.get('/my-account', (req, res) => {
+//   if (!req.isAuthenticated()) {
+//     return res.redirect('/login');
+//   }
+//   res.render('my-account', { user: req.user });
+// });
 
 // Login route
-router.get('/login', (req, res) => {
-  res.render('login');
-});
+// router.get('/login', (req, res) => {
+//   res.render('login');
+// });
 
 module.exports = router;

@@ -179,7 +179,17 @@ router.post('/Login', (req, res) => {
                 res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
 
                 // Respond with success message and token
-                res.status(200).json({ message: 'Auth Successful', token: token, username: user.username });
+                res.status(200).json({ message: 'Auth Successful', token: token,
+                   user: {
+                  email: user.email,
+                  code:user.code,
+                  number: user.number,
+                  _id: user._id,
+                availabilityStatus: user.availabilityStatus,
+                isVerified: user.isVerified
+                }
+              })
+            
             });
         })
         .catch(err => {

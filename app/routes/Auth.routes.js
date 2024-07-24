@@ -81,7 +81,7 @@ router.post('/resend-verification-email', (req, res) => {
       })
       .then(user => {
         // Send email logic here (use your nodemailer configuration)
-        const verificationLink = `http://localhost:1911/verify/verify-email?token=${user.verificationToken}`;
+        const verificationLink = `http://localhost:1911/user/verify-email?token=${user.verificationToken}`;
         res.status(200).json({
           message: "Verification email sent successfully"
         });

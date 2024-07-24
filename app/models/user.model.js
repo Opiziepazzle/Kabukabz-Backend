@@ -64,9 +64,12 @@ googleId: {
     required: false
   },
 
+  availabilityStatus: {  
+    type: String,
+    enum: ['available', 'unavailable', 'busy'],  
+    default: 'available'
 
-
-
+  }
 
 },
 
