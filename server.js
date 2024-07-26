@@ -9,8 +9,8 @@ const checkAuth = require('./app/middleware/App.middleware')
 const bodyParser  = require('body-parser')
 const userRoutes = require('./app/routes/App.routes')
 const verifyRoutes = require('./app/routes/Auth.routes')
-//const googleRoutes = require('./app/routes/GoogleAuth.routes')
-//const passport = require('passport');
+const googleRoutes = require('./app/routes/GoogleAuth.routes')
+const passport = require('passport');
 const ErrorHandler = require('./app/middleware/ErrorHandler.middleware');
 const session = require('express-session');
 
@@ -21,16 +21,16 @@ const session = require('express-session');
  require('dotenv').config();
 
  // Passport configuration
-//require('./app/config/passport')(passport);
+require('./app/config/passport'); //(passport);
  
-//  app.use(session({
-//     secret: process.env.SESSION_SECRET,
-//     resave: false,
-//     saveUninitialized: true
-//   }));
+ app.use(session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true
+  }));
   
-//   app.use(passport.initialize());
-//   app.use(passport.session());
+  app.use(passport.initialize());
+  app.use(passport.session());
 
 
 
@@ -64,7 +64,7 @@ app.use(express.static(path.join(__dirname, "public")));
  //Routes which should handle request
 app.use('/user', userRoutes)
 app.use('/user', verifyRoutes)
-//app.use('/auth', googleRoutes)
+app.use('/auth', googleRoutes)
 
 
 

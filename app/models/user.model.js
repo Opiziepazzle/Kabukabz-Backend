@@ -87,4 +87,9 @@ googleId: {
 
 );
 
+
+// Creating indexes on frequently queried fields
+userSchema.index({ email: 1 });
+userSchema.index({ number: 1 });
+
 module.exports = mongoose.model('User', userSchema);
