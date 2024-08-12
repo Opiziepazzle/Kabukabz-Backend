@@ -10,6 +10,7 @@ const cookieParser = require('cookie-parser');
 const checkAuth = require("../middleware/App.middleware");
 require('dotenv').config();
 
+
 const {  sinupValidationRules, loginValidationRules, updateValidationRules, validate } = require('../utils/Validator');
 const AppController = require('../controller/App.controller')
 

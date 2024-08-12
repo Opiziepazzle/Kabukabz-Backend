@@ -5,20 +5,24 @@ const fs = require('fs')
 const path = require('path')
 const mongoose = require('mongoose')
 const cookieParser = require('cookie-parser');
+const multer = require('multer');
 const checkAuth = require('./app/middleware/App.middleware')
 const bodyParser  = require('body-parser')
 const userRoutes = require('./app/routes/App.routes')
+const userInfoRoutes = require('./app/routes/UserInfo.routes')
 const verifyRoutes = require('./app/routes/Auth.routes')
 const googleRoutes = require('./app/routes/GoogleAuth.routes')
+const locationsRoutes = require('./app/routes/Location.routes')
 const passport = require('passport');
 const ErrorHandler = require('./app/middleware/ErrorHandler.middleware');
 const session = require('express-session');
 
-
-
-
  require('./app/database/Mongo.database')
  require('dotenv').config();
+
+
+//making upload folder publicly available and then passing the middleware
+app.use('/uploads', express.static('uploads') )
 
  // Passport configuration
 require('./app/config/passport'); //(passport);
@@ -57,19 +61,16 @@ app.use(express.static(path.join(__dirname, "public")));
  
  app.use(bodyParser.urlencoded({extended: false}))
  app.use(bodyParser.json());
- app.use(cookieParser());
+app.use(cookieParser());
 
 
 
  //Routes which should handle request
 app.use('/user', userRoutes)
 app.use('/user', verifyRoutes)
+app.use('/user', userInfoRoutes)
 app.use('/auth', googleRoutes)
-
-
-
-
-
+app.use('/locations', locationsRoutes);
 
 
 
