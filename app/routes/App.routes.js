@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const bodyParser = require('body-parser');
 const userSchema = require("../models/user.model");
@@ -39,7 +39,7 @@ const transporter = nodemailer.createTransport({
 
 
 
-router.post('/Login', loginValidationRules(), validate, AppController.Login);
+router.post('/login', loginValidationRules(), validate, AppController.Login);
 
 
 router.patch('/updateProfile', checkAuth,  updateValidationRules(), validate,  AppController.UpdateProfile );

@@ -12,7 +12,7 @@ const userRoutes = require('./app/routes/App.routes')
 const userInfoRoutes = require('./app/routes/UserInfo.routes')
 const verifyRoutes = require('./app/routes/Auth.routes')
 const googleRoutes = require('./app/routes/GoogleAuth.routes')
-const locationsRoutes = require('./app/routes/Location.routes')
+const rideRequestRoutes = require('./app/routes/RideRequest.routes')
 const passport = require('passport');
 const ErrorHandler = require('./app/middleware/ErrorHandler.middleware');
 const session = require('express-session');
@@ -69,8 +69,8 @@ app.use(cookieParser());
 app.use('/user', userRoutes)
 app.use('/user', verifyRoutes)
 app.use('/user', userInfoRoutes)
+app.use('/user', rideRequestRoutes);
 app.use('/auth', googleRoutes)
-app.use('/locations', locationsRoutes);
 
 
 

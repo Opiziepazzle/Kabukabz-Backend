@@ -1,6 +1,6 @@
 const userSchema = require("../models/user.model");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const bodyParser = require('body-parser');
 const crypto = require('crypto');

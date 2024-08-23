@@ -8,6 +8,9 @@ const multer = require('multer');
 const checkAuth = require("../middleware/App.middleware");
 require('dotenv').config();
 
+const {  userInfoValidationRules, validate } = require('../utils/Validator');
+
+
 const UserInfoController = require("../controller/UserInfo.controller")
 
 
@@ -42,20 +45,7 @@ fileFilter: fileFilter })
 
 
 
-
-router.post("/info", checkAuth, upload.single('profilePics'), UserInfoController.UserFullDetails )
-
-
-//  UserInfoController.Logout,
-
-router.post('/log/logout', (req, res) => {
-  // Clear the token cookie or remove the token from client side
-  res.clearCookie('token'); // Assuming the token is stored in a cookie
-
-  res.status(200).json({ message: 'Logout successful' });
-} )
-
-
+router.post("/info", userInfoValidationRules(), validate, checkAuth, upload.single('profilePics'), UserInfoController.UserFullDetails )
 
 
 module.exports = router;

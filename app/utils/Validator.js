@@ -1,6 +1,14 @@
 
 const { check, validationResult } = require('express-validator');
 const validator = require('validator');
+const mongoose = require('mongoose');
+const userInfoSchema = require("../models/userInfo.model");
+const userSchema = require("../models/user.model");
+
+
+
+
+
 
 const sinupValidationRules = () => {
     return [
@@ -39,6 +47,27 @@ const updateValidationRules = () => {
 
 
 
+const userInfoValidationRules = () => {
+    return [
+        check('userId')
+            .optional()
+            .exists({ checkFalsy: true }).withMessage('User ID is required')
+            .bail()
+            .isMongoId().withMessage('Invalid user ID'),
+        check('name').optional().notEmpty().withMessage('Name cannot be empty'),
+        check('dob').optional().isISO8601().withMessage('Invalid date of birth'),
+        check('email').optional().isEmail().withMessage('Enter a valid email address'),
+        check('phone').optional().isMobilePhone().withMessage('Enter a valid phone number'),
+        check('emergencyContactPhoneNumber').optional().isMobilePhone().withMessage('Enter a valid emergency contact phone number'),
+        check('idCardNumber').optional().notEmpty().withMessage('ID card number cannot be empty'),
+        check('gender').optional().isIn(['male', 'female']).withMessage('Gender must be male or female'),
+        // Add other validation rules as needed
+    ];
+};
+
+
+
+
 
 const validate = (req, res, next) => {
     const errors = validationResult(req);
@@ -48,9 +77,15 @@ const validate = (req, res, next) => {
     next();
 }
 
+
+
+
+
+
 module.exports = {
      sinupValidationRules,
      loginValidationRules,
      updateValidationRules,
+     userInfoValidationRules,
     validate,
 };

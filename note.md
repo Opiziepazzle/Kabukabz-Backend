@@ -193,7 +193,7 @@ Long description: A detailed explanation of the function or class, including its
 
 
 
- const User = require('../models/user.model');
+ * UserInfo route for creation of a new user
 
 /**
  * Route handler to create a new user.
@@ -204,3 +204,38 @@ Long description: A detailed explanation of the function or class, including its
  * @param {Object} res - The response object used to send the response.
  * @return {Object} - Returns a JSON object with success or error messages.
  */
+
+ * * Ride Request Route
+
+ This route handles the creation of a new ride request. It performs geocoding to obtain coordinates from provided addresses and saves the request to the database. The route also ensures that the user is authenticated before allowing the creation of a ride request.
+
+Route
+POST /use/ride-request
+
+Parameters
+Body (req.body):
+pickupAddress (string): The pickup address for the ride request.
+dropoffAddress (string): The dropoff address for the ride request.
+vehicleType (string): The type of vehicle for the ride request. Possible values: 'Car', 'Bus', 'Van'.
+optionalPaymentAmount (number): Optional payment amount for the ride request.
+Request Headers
+Authorization (string): A JWT token required for authentication. This should be included in the Authorization header.
+Returns
+Success:
+
+Status Code: 201 Created
+Body: A JSON object representing the created ride request, including its unique identifier and other details.
+Error:
+
+Status Code: 500 Internal Server Error
+Body: A JSON object containing the error message if the geocoding fails or there are issues with saving the ride request.
+T
+hrows
+Geocoding Error:
+
+If the geocoding service fails or the address is not found, a 500 Internal Server Error is thrown with a message indicating the geocoding error.
+Database Error:
+
+If there is an error saving the ride request to the database, a 500 Internal Server Error is thrown with a message indicating the database  error.
+Example
+Request:

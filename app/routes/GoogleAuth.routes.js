@@ -13,11 +13,7 @@ router.get('/google/callback',
   }
 );
 
-// Route for logging out
-// router.get('/logout', (req, res) => {
-//   req.logout();
-//   res.redirect('/');
-// });
+
 
 // Home route
 // router.get('/', (req, res) => {

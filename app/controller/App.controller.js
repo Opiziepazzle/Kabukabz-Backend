@@ -1,6 +1,6 @@
 const userSchema = require("../models/user.model");
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken')
@@ -98,7 +98,6 @@ exports.SignUp =  (req, res, next) => {
               );
   
               const user = new userSchema({
-                _id: new mongoose.Types.ObjectId(),
                 email,
                 password: hash,
                 code,
@@ -205,7 +204,7 @@ const query = isNaN(emailOrNumber) ? { email: sanitizedInput } : { number: sanit
                   email: user.email,
                   code:user.code,
                   number: user.number,
-                  _id: user._id,
+                  userId: user._id,
                 availabilityStatus: user.availabilityStatus,
                 isVerified: user.isVerified
                 }
